@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
 export default React.createClass({
+  filterBy(key, value) {
+    return event => {
+      this.props.handleFilter({
+        key:   key,
+        value: value
+      });
+    };
+  },
 	render() {
     var data = this.props.data;
 
@@ -9,8 +17,16 @@ export default React.createClass({
       	<td>{data.title}</td>
         <td>{data.artist}</td>
         <td>{data.album}</td>
-        <td>{data.genre}</td>
-        <td>{data.user}</td>
+        <td>
+          <a onClick={this.filterBy('genre', data.genre)} href="#">
+            {data.genre}
+          </a>
+        </td>
+        <td>
+          <a onClick={this.filterBy('user', data.user)} href="#">
+            {data.user}
+          </a>
+        </td>
       </tr>
     );
   }
