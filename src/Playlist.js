@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Song from './Song';
 
-export default class Playlist extends Component {
+export default React.createClass({
   render() {
     var songs = this.props.songs.map(function(song) {
     	return (
@@ -10,9 +10,20 @@ export default class Playlist extends Component {
     });
     
     return (
-    	<ul className="song-list">
-      	{songs}
-      </ul>
+    	<table className="song-list">
+        <thead>
+          <tr>
+            <th>Song name</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Genre</th>
+            <th>Linked by</th>
+          </tr>
+        </thead>
+        <tbody>
+          {songs}
+        </tbody>
+      </table>
     );
   }
-};
+});
