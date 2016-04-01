@@ -4,65 +4,77 @@ import Song from './Song';
 export default React.createClass({
   getInitialState() {
     return {
-      songs:   [],
-      filters: {}
+      songs: []
     };
   },
-  componentDidMount() {
-    // TODO: AJAX this in
-    this.setState({
-      songs: [
-        {
-          id:     '76WRHOINx2bIcOgnwBKydI',
-          title:  'Hide and Seek',
-          artist: 'Imogen Heap',
-          album:  'Speak for Yourself',
-          genre:  'Black Metal',
-          user:   'Eric Wood'
-        },
-        {
-          id:     '4fkAWGCbxNizyNwsHlrajH',
-          title:  'Farewell Transmission',
-          artist: 'Songs: Ohia',
-          album:  'Magnolia Electric Co.',
-          genre:  'I have no idea?',
-          user:   'Eric Wood'
-        },
-        {
-          id:     '4gB5Idv1iw8jgxyEvuwPVA',
-          title:  'Hey Miami',
-          artist: 'Sylvan Esso',
-          album:  'Sylvan Esso',
-          genre:  'Electronic Folk',
-          user:   'Eric Wood'
-        }
-      ]
+  loadSongs() {
+    let url = 'http://98259750.ngrok.io/tracks';
+    $.getJSON(url).done(data => {
+      let songs = data.tracks;
+
+      this.setState({
+        songs: songs,
+        allSongs: songs
+      });
     });
+    //let songs = [
+    //  {
+    //    id:     '76WRHOINx2bIcOgnwBKydI',
+    //    title:  'Hide and Seek',
+    //    artist: 'Imogen Heap',
+    //    album:  'Speak for Yourself',
+    //    user:   'Jeffrey Wan'
+    //  },
+    //  {
+    //    id:     '4fkAWGCbxNizyNwsHlrajH',
+    //    title:  'Farewell Transmission',
+    //    artist: 'Songs: Ohia',
+    //    album:  'Magnolia Electric Co.',
+    //    user:   'Eric Wood'
+    //  },
+    //  {
+    //    id:     '4gB5Idv1iw8jgxyEvuwPVA',
+    //    title:  'Hey Miami',
+    //    artist: 'Sylvan Esso',
+    //    album:  'Sylvan Esso',
+    //    user:   'Eric Wood'
+    //  }
+    //];
+
   },
-  filterBy(key, value) {
-    console.log(key, value);
+  componentDidMount() {
+    this.loadSongs();
+  },
+  setUser(user) {
+    return (event) => {
+      event.preventDefault();
+
+      this.setState({
+        user: user,
+        songs: _.where(this.state.allSongs, { user: user })
+      });
+    }
   },
   render() {
-    var songs = this.state.songs.map(song => {
+    let songComponents = this.state.songs.map(song => {
     	return (
-      	<Song data={song} key={song.id} handleFilter={this.filterBy} />
+      	<Song data={song} key={song.id} setUser={this.setUser} />
       );
     });
     
     return (
-    	<table className="song-list">
+      <table className="song-list">
         <thead>
           <tr>
-            <th></th>
+            <th width="78"></th>
             <th>Song name</th>
             <th>Artist</th>
             <th>Album</th>
-            <th>Genre</th>
             <th>Linked by</th>
           </tr>
         </thead>
         <tbody>
-          {songs}
+          {songComponents}
         </tbody>
       </table>
     );

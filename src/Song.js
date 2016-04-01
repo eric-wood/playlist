@@ -2,14 +2,6 @@ import React from 'react';
 import SpotifyButton from './SpotifyButton';
 
 export default React.createClass({
-  filterBy(key, value) {
-    return event => {
-      this.props.handleFilter({
-        key:   key,
-        value: value
-      });
-    };
-  },
 	render() {
     var data = this.props.data;
 
@@ -22,12 +14,7 @@ export default React.createClass({
         <td>{data.artist}</td>
         <td>{data.album}</td>
         <td>
-          <a onClick={this.filterBy('genre', data.genre)} href="#">
-            {data.genre}
-          </a>
-        </td>
-        <td>
-          <a onClick={this.filterBy('user', data.user)} href="#">
+          <a onClick={this.props.setUser(data.user)} href="#">
             {data.user}
           </a>
         </td>
