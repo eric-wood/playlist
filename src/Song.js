@@ -10,9 +10,9 @@ export default React.createClass({
         <td>
           <SpotifyButton id={data.id} />
         </td>
-      	<td>{data.title}</td>
+      	<td>{data.track_name}</td>
         <td>{data.artist}</td>
-        <td>{data.album}</td>
+        <td>{data.track_album_name}</td>
         <td>
           <a onClick={this.props.setUser(data.user)} href="#">
             {data.user}

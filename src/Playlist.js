@@ -44,6 +44,8 @@ export default React.createClass({
   },
   componentDidMount() {
     this.loadSongs();
+
+    setInterval(this.loadSongs, 1000);
   },
   setUser(user) {
     return (event) => {
