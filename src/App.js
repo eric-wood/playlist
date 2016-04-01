@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Playlist from './Playlist';
 
 export default React.createClass({

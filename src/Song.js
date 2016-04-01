@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import SpotifyButton from './SpotifyButton';
 
 export default React.createClass({
   filterBy(key, value) {
@@ -14,6 +15,9 @@ export default React.createClass({
 
   	return (
     	<tr className="song" id="song-{this.props.data.id}">
+        <td>
+          <SpotifyButton id={data.id} />
+        </td>
       	<td>{data.title}</td>
         <td>{data.artist}</td>
         <td>{data.album}</td>

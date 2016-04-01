@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Song from './Song';
 
 export default React.createClass({
@@ -13,7 +13,7 @@ export default React.createClass({
     this.setState({
       songs: [
         {
-          id: 1,
+          id:     '76WRHOINx2bIcOgnwBKydI',
           title:  'Hide and Seek',
           artist: 'Imogen Heap',
           album:  'Speak for Yourself',
@@ -21,20 +21,20 @@ export default React.createClass({
           user:   'Eric Wood'
         },
         {
-          id: 2,
-          title:  'Work',
-          artist: 'Rihanna',
-          album:  'ANTI',
-          genre:  'twerk',
-          user:   'John Yeglinski'
+          id:     '4fkAWGCbxNizyNwsHlrajH',
+          title:  'Farewell Transmission',
+          artist: 'Songs: Ohia',
+          album:  'Magnolia Electric Co.',
+          genre:  'I have no idea?',
+          user:   'Eric Wood'
         },
         {
-          id: 3,
-          title:  'Uptown Funk',
-          artist: 'Bruno Marz',
-          album:  'Uptown Special',
-          genre:  'Funk',
-          user:   'Jon Culver'
+          id:     '4gB5Idv1iw8jgxyEvuwPVA',
+          title:  'Hey Miami',
+          artist: 'Sylvan Esso',
+          album:  'Sylvan Esso',
+          genre:  'Electronic Folk',
+          user:   'Eric Wood'
         }
       ]
     });
@@ -53,6 +53,7 @@ export default React.createClass({
     	<table className="song-list">
         <thead>
           <tr>
+            <th></th>
             <th>Song name</th>
             <th>Artist</th>
             <th>Album</th>
